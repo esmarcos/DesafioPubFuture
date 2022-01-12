@@ -2,20 +2,31 @@ package main.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Receita {
 	
-	private long valor;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+	private Double valor;
 	private LocalDate dataRecebimento;
 	private LocalDate dataRecebimentoEsperado;
 	private String descricao;
-	private final Conta conta = new Conta();
-	private Integer id;
+	private TipoReceita tipoReceita;
 	
+	@OneToOne
+	private Conta conta;
 	
-	public long getValor() {
+	public Double getValor() {
 		return valor;
 	}
-	public void setValor(long valor) {
+	public void setValor(Double valor) {
 		this.valor = valor;
 	}
 	public LocalDate getDataRecebimento() {
@@ -45,6 +56,14 @@ public class Receita {
 	public Conta getConta() {
 		return conta;
 	}
+	public void setConta(Conta conta) {
+		this.conta = conta;
+	}
+	public TipoReceita getTipoReceita() {
+		return tipoReceita;
+	}
+	public void setTipoReceita(TipoReceita tipoReceita) {
+		this.tipoReceita = tipoReceita;
+	}
 	
-
 }

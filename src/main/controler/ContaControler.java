@@ -25,9 +25,15 @@ public class ContaControler {
 		
 	}
 	
-	public void remover(Integer id) {
-		
+	public void atualizar(Integer id, String instituicaoFinanceira, String tipoDeConta) {
+		Conta conta = new Conta();
+		conta.setId(id);
+		conta.setInstituicaoFinanceira(instituicaoFinanceira);
+		conta.setTipoDeConta(TipoDeConta.valueOf(tipoDeConta));
+		contaDAO.atualizar(conta);
 	}
+		
+	
 	
 	public Conta busacar(Integer id) {
 		return contaDAO.buscar(id);
@@ -37,5 +43,8 @@ public class ContaControler {
 		return contaDAO.buscarTodos();
 	}
 	
+	public void remover(Integer id) {
+		contaDAO.remover(id);
+	}
 	
 }

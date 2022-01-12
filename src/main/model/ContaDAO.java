@@ -1,16 +1,9 @@
 package main.model;
-
-
-
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Embeddable;
 import javax.persistence.EntityManager;
 
 public class ContaDAO {
-	
-	private List<Conta> contas = new ArrayList<>();
 	
 	
 	public void salvar(Conta conta) {
@@ -33,7 +26,37 @@ public class ContaDAO {
 	public List<Conta> buscarTodos() {
 		EntityManager em = Conexao.getEntityManager();
 		List<Conta> contas = em.createQuery("SELECT c FROM " + Conta.class.getSimpleName() + " c ", Conta.class).getResultList();
+		em.close();
 		return contas;
 	}
-
+	
+	public void remover(Integer id) {
+		EntityManager em = Conexao.getEntityManager();
+		int deletado = em.createQuery("DELETE FROM " + Conta.class.getSimpleName() + " WHERE " +  id + " = id").executeUpdate();
+		if (deletado == 0) {
+			em.close();
+			throw new ContaNaoEncontrada("Conta não encontrada. ");
+		}
+			
+		em.getTransaction().commit();
+		em.close();
+	}
+	
+	
+	public void atualizar(Conta conta) {
+		EntityManager em = Conexao.getEntityManager();
+		Conta contan = this.buscar(conta.getId());
+		if (contan == null) {
+			em.close();
+			throw new ContaNaoEncontrada("Conta não encontrada. ");
+			
+		}
+		
+		em.merge(conta);
+		em.getTransaction().commit();
+		em.close();
+	}
+	
 }
+
+
