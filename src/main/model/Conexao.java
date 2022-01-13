@@ -6,7 +6,7 @@ import javax.persistence.Persistence;
 
 public class Conexao {
 
-	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("arquivo_dados");
+	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("banco");
 
 	public static EntityManager getEntityManager() {
 		EntityManager em = emf.createEntityManager();

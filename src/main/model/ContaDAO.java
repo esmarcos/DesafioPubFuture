@@ -35,7 +35,7 @@ public class ContaDAO {
 		int deletado = em.createQuery("DELETE FROM " + Conta.class.getSimpleName() + " WHERE " +  id + " = id").executeUpdate();
 		if (deletado == 0) {
 			em.close();
-			throw new ContaNaoEncontrada("Conta não encontrada. ");
+			throw new ObjetoNaoEncontrado("Conta não encontrada. ");
 		}
 			
 		em.getTransaction().commit();
@@ -45,10 +45,10 @@ public class ContaDAO {
 	
 	public void atualizar(Conta conta) {
 		EntityManager em = Conexao.getEntityManager();
-		Conta contan = this.buscar(conta.getId());
-		if (contan == null) {
+		Conta contaASerAtualizada= this.buscar(conta.getId());
+		if (contaASerAtualizada == null) {
 			em.close();
-			throw new ContaNaoEncontrada("Conta não encontrada. ");
+			throw new ObjetoNaoEncontrado("Conta não encontrada. ");
 			
 		}
 		
