@@ -1,27 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17">
+	<classpathentry including="**/*.java" kind="src" output="target/classes" path="src">
 		<attributes>
-			<attribute name="module" value="true"/>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Documents/coneccao/antlr-2.7.7.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Documents/coneccao/byte-buddy-1.11.20.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Documents/coneccao/classmate-1.5.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Documents/coneccao/FastInfoset-1.2.15.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Documents/coneccao/hibernate-commons-annotations-5.1.2.Final.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Documents/coneccao/hibernate-core-5.6.0.Final.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Documents/coneccao/istack-commons-runtime-3.0.7.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Documents/coneccao/jandex-2.2.3.Final.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Documents/coneccao/javax.activation-api-1.2.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Documents/coneccao/javax.persistence-api-2.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Documents/coneccao/jaxb-api-2.3.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Documents/coneccao/jaxb-runtime-2.3.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Documents/coneccao/jboss-logging-3.4.2.Final.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Documents/coneccao/jboss-transaction-api_1.2_spec-1.1.1.Final.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Documents/coneccao/mysql-connector-java-8.0.26.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Documents/coneccao/stax-ex-1.8.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Documents/coneccao/txw2-2.3.1.jar"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="target/classes"/>
 </classpath>

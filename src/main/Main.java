@@ -18,10 +18,9 @@ public class Main {
 		DespesaControler despesaControler = new DespesaControler();
 		TelaConta telaConta = new TelaConta();
 		
-//		telaConta.mostrarOpcoes();
-//		
+		telaConta.mostrarOpcoes();
 		
-	contaControler.cadastrar("Itau", "poupanca");
+		
 
 	}
 
