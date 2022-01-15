@@ -1,10 +1,12 @@
 package main.model;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 
 public class ReceitaDAO {
+
 	
 	public void salvar(Receita receita) {
 		EntityManager em = Conexao.getEntityManager();
@@ -50,9 +52,32 @@ public class ReceitaDAO {
 		
 		em.merge(receita);
 		em.getTransaction().commit();
+		em.close();
+	}
+	
+	
+	
+	public List<Receita> filtrarPorPeriodo(LocalDate dataInicial, LocalDate dataFinal){
+		EntityManager em = Conexao.getEntityManager();
+		List<Receita> receita = em.createQuery("SELECT r FROM " + Receita.class.getSimpleName() + " WHERE  BETWEEN " + dataInicial + " AND " + dataFinal, Receita.class).getResultList();
+		em.close();
+		return receita;
+		
+	}
+		
+	public List<Receita> filtrarPorTipoReceita(String tipoReceita){
+		EntityManager em = Conexao.getEntityManager();
+		List<Receita> receita = em.createQuery("SELECT r FROM " + Receita.class.getSimpleName() + " r WHERE '" + tipoReceita +  "' = tipoReceita ", Receita.class).getResultList();
+		em.close();
+		return receita;
+	
 	}
 	
 	
 	
 	
 }
+	
+	
+	
+

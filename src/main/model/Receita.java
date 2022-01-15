@@ -1,13 +1,16 @@
 package main.model;
 
-import java.text.SimpleDateFormat;
+
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+
 
 @Entity
 public class Receita {
@@ -19,10 +22,11 @@ public class Receita {
 	private LocalDate dataRecebimento;
 	private LocalDate dataRecebimentoEsperado;
 	private String descricao;
+	@Enumerated(EnumType.STRING)
 	private TipoReceita tipoReceita;
 	 
 	
-	@OneToOne
+	@ManyToOne
 	private Conta conta;
 	
 	public Double getValor() {

@@ -1,6 +1,8 @@
 package main.model;
 
+
 public class ObjetoNaoEncontrado extends RuntimeException{
+
 
 	public ObjetoNaoEncontrado(String mensage) {
 		super(mensage);
@@ -9,4 +11,8 @@ public class ObjetoNaoEncontrado extends RuntimeException{
 	public ObjetoNaoEncontrado(Throwable cause) {
 		super(cause);
 	}
+
+	
+
+	
 }

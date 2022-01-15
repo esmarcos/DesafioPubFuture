@@ -10,15 +10,18 @@ import main.model.TipoDespesa;
 
 public class DespesaControler {
 	
+	ContaControler contaControler = new ContaControler();
 	private final DespesaDAO despesaDAO = new DespesaDAO();
 	
-	public void cadastrar(Conta conta, Double valor, LocalDate dataPagamento, LocalDate dataPagamentoEsperado, String tipoDespesa) {
+	public void cadastrar(Integer idConta, Double valor, LocalDate dataPagamento, LocalDate dataPagamentoEsperado, String tipoDespesa) {
 		Despesa despesa = new Despesa();
+		Conta conta = contaControler.busacar(idConta);
 		despesa.setConta(conta);
 		despesa.setValor(valor);
 		despesa.setDataPagamento(dataPagamentoEsperado);
 		despesa.setDataPagamentoEsperado(dataPagamentoEsperado);
 		despesa.setTipoDespesa(TipoDespesa.valueOf(tipoDespesa));
+		contaControler.atualizarSaldoDespesa(conta, despesa);
 		despesaDAO.salvar(despesa);
 	}
 	
@@ -30,6 +33,7 @@ public class DespesaControler {
 		despesa.setDataPagamento(dataPagamentoEsperado);
 		despesa.setDataPagamentoEsperado(dataPagamentoEsperado);
 		despesa.setTipoDespesa(TipoDespesa.valueOf(tipoDespesa));
+		
 		despesaDAO.atualizar(despesa);
 	}
 	
@@ -45,6 +49,9 @@ public class DespesaControler {
 		return despesaDAO.buscarTodos();
 	}
 	
+	public List<Despesa> filtrarPorPeriodo(LocalDate dataInicial, LocalDate dataFinal){
+		return despesaDAO.filtrarPorPeriodo(dataInicial, dataFinal);
+	}
 	
 	
 

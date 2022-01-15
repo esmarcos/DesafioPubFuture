@@ -3,10 +3,12 @@ package main.model;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Despesa {
@@ -17,9 +19,10 @@ public class Despesa {
 	private Double valor;
 	private LocalDate dataPagamento;
 	private LocalDate dataPagamentoEsperado;
+	@Enumerated(EnumType.STRING)
 	private TipoDespesa tipoDespesa;
 	
-	@OneToOne
+	@ManyToOne
 	private Conta conta;
 	
 	

@@ -57,6 +57,13 @@ public class ContaDAO {
 		em.close();
 	}
 	
+	public List<Despesa> buscarTotalDespesasPorConta(Integer id){
+		EntityManager em = Conexao.getEntityManager();
+		List<Despesa> despesa = em.createQuery("SELECT d FROM " + Despesa.class.getSimpleName() + " d WHERE '" + id + "' = d.conta_id ").getResultList();
+		em.close();
+		return despesa;
+	}
+	
 }
 
 

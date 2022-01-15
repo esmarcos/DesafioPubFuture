@@ -1,10 +1,11 @@
 package main.model;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Conta {
@@ -13,8 +14,11 @@ public class Conta {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private Double saldo;	
-	private TipoDeConta tipoDeConta;
 	private String instituicaoFinanceira;
+	@Enumerated(EnumType.STRING)
+	private TipoDeConta tipoDeConta;
+	
+	
 	
 	
 	
@@ -51,12 +55,15 @@ public class Conta {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
-	
-	
+
+
+
 	@Override
 	public String toString() {
 		return "Conta [id=" + id + ", saldo=" + saldo + ", tipoDeConta=" + tipoDeConta + ", instituicaoFinanceira="
 				+ instituicaoFinanceira + "]";
 	}
+
+
 }
+	

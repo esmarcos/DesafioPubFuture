@@ -13,15 +13,18 @@ public class ReceitaControler {
 	
 	private final ReceitaDAO receitaDAO = new ReceitaDAO();
 	SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+	ContaControler contaControler = new ContaControler();
 	
-	public void cadastrar(Conta conta, Double valor, LocalDate dataRecebimento, LocalDate dataRecebimentoEsperado, String tipoReceita, String descricao ) {
+	public void cadastrar(Integer idConta, Double valor, LocalDate dataRecebimento, LocalDate dataRecebimentoEsperado, String tipoReceita, String descricao ) {
 		Receita receita = new Receita();
-		receita.setConta(conta);
+		Conta conta = contaControler.busacar(idConta);
 		receita.setValor(valor);
+		receita.setConta(conta);
 		receita.setDataRecebimento(dataRecebimento);
 		receita.setDataRecebimentoEsperado(dataRecebimentoEsperado);
 		receita.setTipoReceita(TipoReceita.valueOf(tipoReceita));
 		receita.setDescricao(descricao);
+		contaControler.atualizarSaldoReceita(conta, receita);
 		receitaDAO.salvar(receita);
 		
 	}
@@ -51,6 +54,19 @@ public class ReceitaControler {
 	public List<Receita> buscarTodos(){
 		return receitaDAO.buscarTodos();
 	}
+	
+	public List<Receita> filtrarPorPeriodo(LocalDate dataInicial, LocalDate dataFinal){
+		return receitaDAO.filtrarPorPeriodo(dataInicial, dataFinal);
+		
+	}
+	
+	public List<Receita> filtarPorTipoReceita(String tipoReceita){
+		return receitaDAO.filtrarPorTipoReceita(tipoReceita);
+	
+	}
+	
+	
+	
  
 
 		

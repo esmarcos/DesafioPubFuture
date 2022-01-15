@@ -54,17 +54,20 @@ public class DespesaDAO {
 		em.close();
 	}
 	
-	public List<Despesa> buscarPorData(LocalDate dataInicial, LocalDate dataFinal){
+	public List<Despesa> filtrarPorPeriodo(LocalDate dataInicial, LocalDate dataFinal){
 		EntityManager em = Conexao.getEntityManager();
 		List<Despesa> despesa = em.createQuery("SELECT d FROM " + Despesa.class.getSimpleName() + " WHERE  BETWEEN " + dataInicial + " AND " + dataFinal, Despesa.class).getResultList();
-		if (despesa.size() == 0);{
-			em.close();
-			throw new ObjetoNaoEncontrado("Despesa não encontrada. ");
-		}
-		
 		em.close();
 		return despesa;
 		
+	}
+	
+	public List<Despesa> filtrarPorTipoDespesa(String tipoDespesa){
+		EntityManager em = Conexao.getEntityManager();
+		List<Despesa> despesa = em.createQuery("SELECT d FROM " + Despesa.class.getSimpleName() + " d WHERE '" + tipoDespesa +  "' = tipoDespesa ", Despesa.class).getResultList();
+		em.close();
+		return despesa;
+	
 	}
 	
 	
