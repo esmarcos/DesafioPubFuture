@@ -2,6 +2,7 @@ package main.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -22,7 +23,7 @@ public class Despesa {
 	@Enumerated(EnumType.STRING)
 	private TipoDespesa tipoDespesa;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Conta conta;
 	
 	

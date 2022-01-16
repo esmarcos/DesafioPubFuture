@@ -5,7 +5,11 @@ import javax.persistence.EntityManager;
 
 public class ContaDAO {
 	
-	
+	/**
+	 * Salva as alterações da conta no banco de dados.
+	 * 
+	 * @param conta
+	 */
 	public void salvar(Conta conta) {
 		EntityManager em = Conexao.getEntityManager();
 		em.persist(conta);
@@ -15,6 +19,12 @@ public class ContaDAO {
 
 	}
 	
+	/**
+	 * Busca a conta no banco de dados.
+	 * 
+	 * @param id
+	 * @return Conta
+	 */
 	public Conta buscar(Integer id) {
 		EntityManager em = Conexao.getEntityManager();
 		Conta conta = em.find(Conta.class, id);
@@ -23,6 +33,11 @@ public class ContaDAO {
 	
 	}
 	
+	/**
+	 * Busca todas as contas do banco de dados.
+	 * 
+	 * @return Uma lista de contas.
+	 */
 	public List<Conta> buscarTodos() {
 		EntityManager em = Conexao.getEntityManager();
 		List<Conta> contas = em.createQuery("SELECT c FROM " + Conta.class.getSimpleName() + " c ", Conta.class).getResultList();
@@ -30,6 +45,11 @@ public class ContaDAO {
 		return contas;
 	}
 	
+	/**
+	 * Remove a conta do banco de dados.
+	 * 
+	 * @param id
+	 */
 	public void remover(Integer id) {
 		EntityManager em = Conexao.getEntityManager();
 		int deletado = em.createQuery("DELETE FROM " + Conta.class.getSimpleName() + " WHERE " +  id + " = id").executeUpdate();
@@ -42,7 +62,11 @@ public class ContaDAO {
 		em.close();
 	}
 	
-	
+	/**
+	 * Atualiza as informações no banco de dados.
+	 * 
+	 * @param conta
+	 */
 	public void atualizar(Conta conta) {
 		EntityManager em = Conexao.getEntityManager();
 		Conta contaASerAtualizada= this.buscar(conta.getId());
@@ -57,12 +81,8 @@ public class ContaDAO {
 		em.close();
 	}
 	
-	public List<Despesa> buscarTotalDespesasPorConta(Integer id){
-		EntityManager em = Conexao.getEntityManager();
-		List<Despesa> despesa = em.createQuery("SELECT d FROM " + Despesa.class.getSimpleName() + " d WHERE '" + id + "' = d.conta_id ").getResultList();
-		em.close();
-		return despesa;
-	}
+	
+	
 	
 }
 

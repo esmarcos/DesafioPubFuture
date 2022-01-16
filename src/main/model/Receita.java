@@ -3,6 +3,7 @@ package main.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -26,7 +27,7 @@ public class Receita {
 	private TipoReceita tipoReceita;
 	 
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Conta conta;
 	
 	public Double getValor() {

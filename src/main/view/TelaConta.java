@@ -8,10 +8,11 @@ import main.model.Conta;
 import main.model.ObjetoNaoEncontrado;
 
 public class TelaConta {
-
+	
+	
 	ContaControler contaControler = new ContaControler();
 	private Scanner sc = new Scanner(System.in);
-
+	
 	public void mostrarOpcoes() {
 
 		while (true) {
@@ -23,30 +24,31 @@ public class TelaConta {
 			System.out.println("5 - Buscar todas contas. ");
 			System.out.println("6 - Transferir saldo. ");
 			System.out.println("7 - Consultar Saldo");
+			System.out.println("8 - Voltar a tela principal. ");
 			System.out.println("Digite o número da opção: ");
 			int numero = sc.nextInt();
 
 			switch (numero) {
 			case 1:
 				String instituicaoFinanceira = this.pedirInformacoes("Digite a instituição financeira: ");
-				String tipoConta = this.pedirInformacoes("Digite o tipo de conta: ");
+				String tipoConta = this.pedirInformacoes("Digite o tipo de conta(CARTEIRA |CONTA_CORRENTE |POUPANCA): ");
 				try {
 					contaControler.cadastrar(instituicaoFinanceira, tipoConta);
 					System.out.println("Conta cadastrada com sucesso. ");
-				} catch (IllegalArgumentException e) {
+				} catch (Exception e) {
 					System.out.println(e.getMessage());
 				}
 				System.out.println();
 				break;
 			case 2:
-				Integer idContaAtualizada = this.pedirNumero("Digete o id da Conta a ser atualizada. ");
+				Integer idContaAtualizada = this.pedirNumero("Digete o id da Conta a ser atualizada: ");
 				String instituicaoFinanceiraAtualizada = this.pedirInformacoes("Digite a instituição financeira: ");
-				String tipoContaAtualizada = this.pedirInformacoes("Digite o tipo de conta: ");
+				String tipoContaAtualizada = this.pedirInformacoes("Digite o tipo de conta(CARTEIRA |CONTA_CORRENTE |POUPANCA): ");
 				try {
 					contaControler.atualizar(idContaAtualizada, instituicaoFinanceiraAtualizada, tipoContaAtualizada);
 					System.out.println("Conta atualizada. ");
-				} catch (ObjetoNaoEncontrado e) {
-					System.out.println("Dados incorretos. ");
+				} catch (IllegalArgumentException e) {
+					System.out.println(e.getMessage());
 				}
 				System.out.println();
 				break;
@@ -62,10 +64,14 @@ public class TelaConta {
 				System.out.println();
 				break;
 			case 4:
-				Integer idContaProcurada = this.pedirNumero("Digite o id da conta que prcura: ");
-				contaControler.busacar(idContaProcurada);
-				this.mostrarConta(idContaProcurada);
-				System.out.println();
+				Integer idContaProcurada = this.pedirNumero("Digite o id da conta que procura: ");
+				try{
+					contaControler.busacar(idContaProcurada);
+					this.mostrarConta(idContaProcurada);
+					System.out.println();
+				}catch(NullPointerException e) {
+					System.out.println(e.getMessage());
+				}
 				break;
 			case 5:
 				List<Conta> contas = contaControler.buscartodos();
@@ -82,6 +88,9 @@ public class TelaConta {
 				Integer idContaConsultada = this.pedirNumero("Digite o id da conta: ");
 				Double saldo = contaControler.consultarSaldo(idContaConsultada);
 				System.out.println(saldo);
+				break;	
+			}
+			if (numero == 8) {
 				break;
 			}
 

@@ -7,6 +7,11 @@ import javax.persistence.EntityManager;
 
 public class DespesaDAO {
 
+	/**
+	 * Salva as alterações da despesa no banco de dados.
+	 * 
+	 * @param despesa
+	 */
 	public void salvar(Despesa despesa) {
 		EntityManager em = Conexao.getEntityManager();
 		em.persist(despesa);
@@ -15,6 +20,12 @@ public class DespesaDAO {
 		
 	}
 	
+	/**
+	 * Busca uma despesa no banco de dados.
+	 * 
+	 * @param id
+	 * @return Despesa.
+	 */
 	public Despesa buscar(Integer id) {
 		EntityManager em = Conexao.getEntityManager();
 		Despesa despesa = em.find(Despesa.class, id);
@@ -22,12 +33,23 @@ public class DespesaDAO {
 		return despesa;
 	}
 	
+	/**
+	 * Busca todas as despesas no banco de dados.
+	 * 
+	 * @return Uma lista de despesas.
+	 */
 	public List<Despesa> buscarTodos() {
 		EntityManager em = Conexao.getEntityManager();
 		List<Despesa> despesas = em.createQuery("SELECT d FROM " + Despesa.class.getSimpleName() + " d ", Despesa.class).getResultList();
 		em.close();
 		return despesas;
 	}
+	
+	/**
+	 * Remove uma conta do despesa de dados.
+	 * 
+	 * @param id
+	 */
 	public void remover(Integer id) {
 		EntityManager em = Conexao.getEntityManager();
 		int deletado = em.createQuery("DELETE FROM " + Despesa.class.getSimpleName() + " WHERE " +  id + " = id").executeUpdate();
@@ -40,6 +62,11 @@ public class DespesaDAO {
 		em.close();
 	}
 	
+	/**
+	 * Atuliaza alterações na despesa no banco de dados.
+	 * 
+	 * @param despesa
+	 */
 	public void atualizar(Despesa despesa ) {
 		EntityManager em = Conexao.getEntityManager();
 		Despesa despesaASerAtualizada= this.buscar(despesa.getId());
@@ -54,14 +81,27 @@ public class DespesaDAO {
 		em.close();
 	}
 	
+	/**
+	 * Confere todas as despesas pra ver se estão no periodo estabelecido por parâmetro.
+	 * 
+	 * @param dataInicial
+	 * @param dataFinal
+	 * @return Uma lista de despesas.
+	 */
 	public List<Despesa> filtrarPorPeriodo(LocalDate dataInicial, LocalDate dataFinal){
 		EntityManager em = Conexao.getEntityManager();
-		List<Despesa> despesa = em.createQuery("SELECT d FROM " + Despesa.class.getSimpleName() + " WHERE  BETWEEN " + dataInicial + " AND " + dataFinal, Despesa.class).getResultList();
+		List<Despesa> despesa = em.createQuery("SELECT d FROM " + Despesa.class.getSimpleName() + " d WHERE dataPagamento BETWEEN '" + dataInicial + "' AND '" + dataFinal + "'", Despesa.class).getResultList();
 		em.close();
 		return despesa;
 		
 	}
 	
+	/**
+	 * Confere todas as despesas pra ver se estão no tipo estabelecido por parâmetro.
+	 * 
+	 * @param tipoDespesa
+	 * @return Uma lista de despesas.
+	 */
 	public List<Despesa> filtrarPorTipoDespesa(String tipoDespesa){
 		EntityManager em = Conexao.getEntityManager();
 		List<Despesa> despesa = em.createQuery("SELECT d FROM " + Despesa.class.getSimpleName() + " d WHERE '" + tipoDespesa +  "' = tipoDespesa ", Despesa.class).getResultList();
