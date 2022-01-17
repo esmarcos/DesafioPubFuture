@@ -35,8 +35,7 @@ public class TelaReceita {
 					LocalDate dataRecebimento = this.pedirData("Digite a data: ");
 					LocalDate dataRecebimentoEsperado = this.pedirData("Digite a data: ");
 					String descricao = this.pedirInformacoes("Digite a descrição: ");
-					String tipoReceita = this
-							.pedirInformacoes("Digite o tipo de receita(SALARIO |PRESENTE |PREMIO |OUTROS;):");
+					String tipoReceita = this.pedirInformacoes("Digite o tipo de receita(SALARIO |PRESENTE |PREMIO |OUTROS;):");
 					receitaControler.cadastrar(idConta, valor, dataRecebimento, dataRecebimentoEsperado, tipoReceita,
 							descricao);
 					System.out.println("Receita cadastrada com sucesso. ");
@@ -50,8 +49,8 @@ public class TelaReceita {
 					Integer idReceita = this.pedirNumero("Digite o id da receita que será atualizada: ");
 					Integer idContaAtualizada = this.pedirNumero("Digite o id da conta: ");
 					Double valorAtualizado = this.pedirValor("Digite o valor da receita: ");
-					LocalDate dataRecebimentoAtualizado = this.pedirData("Digite a data: ");
-					LocalDate dataRecebimentoEsperadoAtualizado = this.pedirData("Digite a data: ");
+					LocalDate dataRecebimentoAtualizado = this.pedirData("Digite a data recebimento: ");
+					LocalDate dataRecebimentoEsperadoAtualizado = this.pedirData("Digite a data recebimento esperado: ");
 					String descricaoAtualizada = this.pedirInformacoes("Digite a descrição: ");
 					String tipoReceitaAtualizada = this
 							.pedirInformacoes("Digite o tipo de receita(SALARIO |PRESENTE |PREMIO |OUTROS;):");

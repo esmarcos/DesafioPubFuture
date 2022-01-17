@@ -22,7 +22,7 @@ public class TelaDespesa {
 			System.out.println("4 - buscar despesa. ");
 			System.out.println("5 - buscar todas despesas. ");
 			System.out.println("6 - Filtrar despesas por periodo. ");
-			System.out.println("7 - filtrar despesas por tipo de receita. ");
+			System.out.println("7 - filtrar despesas por tipo de despesa. ");
 			System.out.println("8 - Voltar a tela principal. ");
 			System.out.println("Digite o número da opção: ");
 			int numero = sc.nextInt();
@@ -34,10 +34,10 @@ public class TelaDespesa {
 					Double valor = this.pedirValor("Digite o valor da despesa: ");
 					LocalDate dataPagamento = this.pedirData("Digite a data: ");
 					LocalDate dataPagamentoEsperado = this.pedirData("Digite a data: ");
-					String tipoReceita = this.pedirInformacoes(
-							"Digite o tipo de receita(ALIMENTACAO |EDUCACAO |LAZER |MORADIA |ROUPA |SAUDE |TRANSPORTE |OUTROS;):");
-					despesaControler.cadastrar(idConta, valor, dataPagamento, dataPagamentoEsperado, tipoReceita);
-					System.out.println("Receita cadastrada com sucesso. ");
+					String tipoDespesa = this.pedirInformacoes(
+							"Digite o tipo de despesa(ALIMENTACAO |EDUCACAO |LAZER |MORADIA |ROUPA |SAUDE |TRANSPORTE |OUTROS;):");
+					despesaControler.cadastrar(idConta, valor, dataPagamento, dataPagamentoEsperado, tipoDespesa);
+					System.out.println("Despesa cadastrada com sucesso. ");
 				} catch (Exception e) {
 					System.out.println(e.getMessage());
 				}
@@ -46,13 +46,13 @@ public class TelaDespesa {
 				try {
 					Integer idDespesa = this.pedirNumero("Digite o id da despesa que será atualizada: ");
 					Integer idContaAtualizada = this.pedirNumero("Digite o id da conta: ");
-					Double valorAtualizado = this.pedirValor("Digite o valor da receita: ");
-					LocalDate dataPagamentoAtualizado = this.pedirData("Digite a data: ");
-					LocalDate dataPagamentoEsperadoAtualizado = this.pedirData("Digite a data: ");
-					String tipoReceitaAtualizada = this.pedirInformacoes(
-							"Digite o tipo de receita(ALIMENTACAO |EDUCACAO |LAZER |MORADIA |ROUPA |SAUDE |TRANSPORTE |OUTROS;):");
+					Double valorAtualizado = this.pedirValor("Digite o valor da depesa: ");
+					LocalDate dataPagamentoAtualizado = this.pedirData("Digite a data de pagamento: ");
+					LocalDate dataPagamentoEsperadoAtualizado = this.pedirData("Digite a data de pagamento esperado: ");
+					String tipoDespesaAtualizada = this.pedirInformacoes(
+							"Digite o tipo de despesa(ALIMENTACAO |EDUCACAO |LAZER |MORADIA |ROUPA |SAUDE |TRANSPORTE |OUTROS;):");
 					despesaControler.atualizar(idDespesa, idContaAtualizada, valorAtualizado, dataPagamentoAtualizado,
-							dataPagamentoEsperadoAtualizado, tipoReceitaAtualizada);
+							dataPagamentoEsperadoAtualizado, tipoDespesaAtualizada);
 					System.out.println("Despesa atualizada com sucesso. ");
 				} catch (Exception e) {
 					System.out.println(e.getMessage());
@@ -89,9 +89,9 @@ public class TelaDespesa {
 			case 7:
 				try {
 					String tipoDespesa = this.pedirInformacoes(
-							"Digite o tipo de receita(ALIMENTACAO |EDUCACAO |LAZER |MORADIA |ROUPA |SAUDE |TRANSPORTE |OUTROS;):");
-					List<Despesa> receitasPorTipo = despesaControler.filtrarPorTipoDespesa(tipoDespesa);
-					this.mostrarDespesas(receitasPorTipo);
+							"Digite o tipo de Despesa(ALIMENTACAO |EDUCACAO |LAZER |MORADIA |ROUPA |SAUDE |TRANSPORTE |OUTROS;):");
+					List<Despesa> despesasPorTipo = despesaControler.filtrarPorTipoDespesa(tipoDespesa);
+					this.mostrarDespesas(despesasPorTipo);
 				} catch (ObjetoNaoEncontrado e) {
 					System.out.println(e.getMessage());
 				}
@@ -137,7 +137,7 @@ public class TelaDespesa {
 
 	public void mostrarDespesa(Integer id) {
 		Despesa despesa = despesaControler.buscar(id);
-		System.out.println("Id | Data de pagamento | Data de pagamento esperado | Tipo de receita | Valor");
+		System.out.println("Id | Data de pagamento | Data de pagamento esperado | Tipo de despesa | Valor");
 		System.out.println("" + despesa.getId() + "        " + despesa.getDataPagamento() + "             "
 				+ despesa.getDataPagamentoEsperado() + "              " + despesa.getTipoDespesa() + "         "
 				+ despesa.getValor());

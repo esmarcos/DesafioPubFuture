@@ -122,7 +122,7 @@ public class DespesaControler {
 		try{
 			return despesaDAO.filtrarPorTipoDespesa(tipodeDespesa.toUpperCase());
 		}catch (ObjetoNaoEncontrado e) {
-			throw new ObjetoNaoEncontrado("Tipo de receita não existente. ");
+			throw new ObjetoNaoEncontrado("Tipo de despesa não existente. ");
 		}
 	}
 	

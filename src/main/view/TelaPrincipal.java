@@ -13,7 +13,7 @@ public class TelaPrincipal {
 
 		while (true) {
 
-			System.out.println("1 - Mostrar opções da conta. ");
+			System.out.println("1 - Mostrar opções da Conta. ");
 			System.out.println("2 - Mostrar opções da Receita. ");
 			System.out.println("3 - Mostrar opções da Despesa. ");
 			System.out.println("Digite o número da opção: ");

@@ -12,6 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 
 @Entity
 public class Receita {
@@ -27,7 +30,8 @@ public class Receita {
 	private TipoReceita tipoReceita;
 	 
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Conta conta;
 	
 	public Double getValor() {

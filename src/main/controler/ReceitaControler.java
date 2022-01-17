@@ -35,11 +35,11 @@ public class ReceitaControler {
 		receita.setDataRecebimentoEsperado(dataRecebimentoEsperado);
 		receita.setDescricao(descricao);
 		try{
-			receita.setTipoReceita(TipoReceita.valueOf(tipoReceita));
+			receita.setTipoReceita(TipoReceita.valueOf(tipoReceita.toUpperCase()));
 			contaControler.atualizarSaldoReceita(conta, receita);
 			receitaDAO.salvar(receita);
 		}catch(IllegalArgumentException e) {
-			throw new IllegalArgumentException("Tipo de receita e/ou conta não existentes ");
+			throw new IllegalArgumentException("Tipo de receita não existente. ");
 		}
 		
 	}
@@ -82,7 +82,7 @@ public class ReceitaControler {
 			contaControler.atualizarSaldoReceita(conta, receita);
 			receitaDAO.atualizar(receita);
 		}catch(IllegalArgumentException e) {
-			throw new IllegalArgumentException("Tipo de receita e/ou conta não existente. ");
+			throw new IllegalArgumentException("Tipo de receita não existente. ");
 		}
 			
 	}
